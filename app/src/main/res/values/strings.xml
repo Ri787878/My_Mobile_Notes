@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My_Mobile_Notes</string>
+    <string name="title_activity_main">My Notes</string>
+    <!-- Edit Note  -->
+    <string name="note_title_hint">Write a Title</string>
+    <string name="note_content">Content</string>
+    <string name="note_content_hint">Write Content</string>
+    <string name="note_save_button">Save</string>
+    <string name="note_modified_date">Last Modified Date</string>
+    <!-- Edit Menu Activity -->
+    <string name="main_menu_activity_delete_button">Delete</string>
+    <string name="main_menu_activity_save_button">Save</string>
+    <!-- Main Activity Menu  -->
+    <string name="main_menu_activity_add">Add</string>
+    <!-- Row Note Item -->
+
+</resources>

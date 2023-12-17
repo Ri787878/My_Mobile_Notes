@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.My_Mobile_Notes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorControlNormal">#ffffff</item>
+    </style>
+
+    <style name="Theme.My_Mobile_Notes" parent="Base.Theme.My_Mobile_Notes" />
+
+    <style name="CustomToolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorOnPrimary">#ffffff</item>
+        <item name="colorControlNormal">#ffffff</item>
+    </style>
+</resources>
