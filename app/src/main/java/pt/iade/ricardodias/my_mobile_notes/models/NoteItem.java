@@ -1,6 +1,9 @@
 package pt.iade.ricardodias.my_mobile_notes.models;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /*
 * Uma classe modelo de uma nota chamada NoteItem. (2 pontos)
@@ -12,32 +15,51 @@ import java.util.Date;
 
 public class NoteItem {
     private int id;
-    private int userId;
     private String title;
     private String content;
-    private Date creationDate;
-    private Date modifiedDate;
+    private LocalDate creationDate;
+    private LocalDate modifiedDate;
 
-    public NoteItem(int id, String title, String content, Date createDate, Date modifiedDate, int userId){
+    public NoteItem(int id, String title, String content, LocalDate createDate, LocalDate modifiedDate){
         this.id = id;
-        this.title = title;
-        this.content = content;
-        this.creationDate = createDate;
-        this.modifiedDate = modifiedDate;
-        this.userId = userId;
+        this.title = "";
+        this.content = "";
+        this.creationDate = LocalDate.now(ZoneId.of("UTC"));
+        this.modifiedDate = LocalDate.now(ZoneId.of("UTC"));
     }
-    public int getId(){return id;}
-    public String getTitle(){return title;}
-    public String getContent(){return content;}
-    public int getUserId(){return userId;}
-    public Date getCreateDate(){return creationDate;}
-    public Date getModifiedDate(){return modifiedDate;}
-    public void setId(int id){this.id = id;}
-    public void setTitle(String title){this.title = title;}
-    public void setContent(String content){this.content = content;}
-    public void setUserId(int userId){this.userId = userId;}
-    public void setCreateDate(Date createDate){this.creationDate = createDate;}
-    public void setModifiedDate(Date modifiedDate){this.modifiedDate = modifiedDate;}
-    public void List(){System.out.println(id + " " + title + " " + content + " " + creationDate + " " + modifiedDate + " " + userId);}
-    public void GetByID(int id){System.out.println(id + " " + title + " " + content + " " + creationDate + " " + modifiedDate + " " + userId);}
+
+    public int getId() {
+        return id;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public LocalDate getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(LocalDate modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 }
