@@ -4,6 +4,7 @@ package pt.iade.ricardodias.my_mobile_notes.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,14 +28,18 @@ public class NoteActivity extends AppCompatActivity {
     protected EditText titleEdit;
     protected EditText contentEdit;
     protected TextView modifiedDateText;
-
     protected NoteItem item;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-        item = new NoteItem(1, "Cleaning my car", "To clean your car you need to first take out the carpets on the floor.", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC")));
+
+        //Get the NoteItem from the intent
+        Intent intent = getIntent();
+        item = (NoteItem) intent.getSerializableExtra("item");
+
 
         setupComponents();
     }
