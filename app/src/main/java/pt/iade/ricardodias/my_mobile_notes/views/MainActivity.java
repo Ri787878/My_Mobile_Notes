@@ -3,6 +3,7 @@ package pt.iade.ricardodias.my_mobile_notes.views;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -16,6 +17,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 
 import pt.iade.ricardodias.my_mobile_notes.R;
+import pt.iade.ricardodias.my_mobile_notes.adapters.NoteItemRowAdapter;
 import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 /*
 * Uma Activity principal chamada de MainActivity onde o utilizador terá uma lista (RecyclerView) de notas
@@ -26,6 +28,7 @@ import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 
 public class MainActivity extends AppCompatActivity {
     protected RecyclerView notesListView;
+    protected NoteItemRowAdapter adapter;
     protected ArrayList<NoteItem> notesList;
 
     @Override
@@ -62,9 +65,13 @@ public class MainActivity extends AppCompatActivity {
         //Setup the Action Bar
         setSupportActionBar(findViewById(R.id.main_activity_toolbar));
 
+        //Setup the row Adapter for the RecyclerView with the NoteItems
+        adapter = new NoteItemRowAdapter(this, notesList);
+
         //Setup the RecyclerView
         notesListView = (RecyclerView) findViewById(R.id.main_activity_notes_list);
         notesListView.setLayoutManager(new LinearLayoutManager(this));
+        notesListView.setAdapter(adapter);
 
     }
 }
