@@ -70,5 +70,7 @@ public class NoteItemRowAdapter extends RecyclerView.Adapter<NoteItemRowAdapter.
     //Defines what to do when an item is clicked
     public interface OnNoteItemClickListener{
         void onNoteItemClick(View view, int position);
+
+        void onItemClick(View view, int position);
     }
 }

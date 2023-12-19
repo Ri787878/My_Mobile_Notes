@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 import pt.iade.ricardodias.my_mobile_notes.R;
@@ -27,6 +25,7 @@ import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 * */
 
 public class MainActivity extends AppCompatActivity {
+    public static final int EDITOR_ACTIVITY_RETURN_ID = 1;
     protected RecyclerView notesListView;
     protected NoteItemRowAdapter adapter;
     protected ArrayList<NoteItem> notesList;
@@ -53,12 +52,35 @@ public class MainActivity extends AppCompatActivity {
             //ActionBar "ADD" note button.
             Intent intent = new Intent(MainActivity.this, NoteActivity.class);
 
+            intent.putExtra("position", -1);
             intent.putExtra("item", new NoteItem());
-            startActivity(intent);
+            startActivityForResult(intent,EDITOR_ACTIVITY_RETURN_ID);
 
             return true;
         }
         return super.onOptionsItemSelected(menuitem);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+                if (requestCode == EDITOR_ACTIVITY_RETURN_ID){
+                    if (resultCode == AppCompatActivity.RESULT_OK){
+                        //Get the data from the intent and the position of the item
+                        int position = data.getIntExtra("position", -1);
+                        NoteItem updatedItem = (NoteItem) data.getSerializableExtra("item");
+
+                        if(position == -1){
+                            //Add the new item to the list and notify the adapter
+                            notesList.add(updatedItem);
+                            adapter.notifyItemInserted(notesList.size() - 1);
+                        } else {
+                            //Update the item in the list and notify the adapter
+                            notesList.set(position, updatedItem);
+                            adapter.notifyItemChanged(position);
+                        }
+                    }
+                }
     }
 
     private void setupComponents() {
@@ -67,6 +89,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Setup the row Adapter for the RecyclerView with the NoteItems
         adapter = new NoteItemRowAdapter(this, notesList);
+        adapter.setClickListener(new NoteItemRowAdapter.OnNoteItemClickListener() {
+
+
+            @Override
+            public void onNoteItemClick(View view, int position) {
+                Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("item", notesList.get(position));
+                startActivity(intent);
+
+            }
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+
+                intent.putExtra("item", notesList.get(position));
+                startActivity(intent);
+            }
+
+        });
 
         //Setup the RecyclerView
         notesListView = (RecyclerView) findViewById(R.id.main_activity_notes_list);

@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 /*
 * Uma classe modelo de uma nota chamada NoteItem. (2 pontos)
@@ -48,6 +49,7 @@ public class NoteItem implements Serializable {
         notes.add(new NoteItem(7, "Note 7", "Note 7 content", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC"))));
         notes.add(new NoteItem(8, "Note 8", "Note 8 content", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC"))));
         notes.add(new NoteItem(9, "Note 9", "Note 9 content", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC"))));
+        notes.add(new NoteItem(10, "Note 10", "Note 10 content", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC"))));
         return notes;
     }
     //Get a NoteItem by id from the web server version
@@ -55,6 +57,15 @@ public class NoteItem implements Serializable {
         return new NoteItem(id, "Note " + id, "Note " + id + " content", LocalDate.now(ZoneId.of("UTC")), LocalDate.now(ZoneId.of("UTC")));
     }
     //Until here
+    public void save(){
+        //TO DO: Save the note to the web server
+        if(id == 0){
+            //brand new object that needs to go to the database
+            id = new Random().nextInt(1000) + 1;
+        } else {
+            //existing object that needs to be updated in the database
+        }
+    }
 
     public String getTitle() {
         return title;
@@ -68,4 +79,15 @@ public class NoteItem implements Serializable {
         return modifiedDate;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setModifiedDate(LocalDate modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 }

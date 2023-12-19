@@ -29,6 +29,7 @@ public class NoteActivity extends AppCompatActivity {
     protected EditText contentEdit;
     protected TextView modifiedDateText;
     protected NoteItem item;
+    protected int listPosition;
 
 
     @Override
@@ -38,6 +39,7 @@ public class NoteActivity extends AppCompatActivity {
 
         //Get the NoteItem from the intent
         Intent intent = getIntent();
+        listPosition = intent.getIntExtra("position", -1);
         item = (NoteItem) intent.getSerializableExtra("item");
 
 
@@ -54,9 +56,14 @@ public class NoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_save_item){
             //TO DO: ActionBar "SAVE" note button.
-
-
-
+            commitView();
+            this.item.save();
+            //Setup data to be sent back to the MainActivity
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("position", this.listPosition);
+            returnIntent.putExtra("item", this.item);
+            setResult(RESULT_OK, returnIntent);
+            finish();
             return true;
         } else if (item.getItemId() == R.id.action_delete_item){
             //TO DO: ActionBar "DELETE" note button.
@@ -85,5 +92,10 @@ public class NoteActivity extends AppCompatActivity {
         contentEdit.setText(item.getContent());
         modifiedDateText.setText(item.getModifiedDate().toString());
 
+    }
+    protected void commitView(){
+        item.setTitle(titleEdit.getText().toString());
+        item.setContent(contentEdit.getText().toString());
+        item.setModifiedDate(LocalDate.now(ZoneId.of("UTC")));
     }
 }
