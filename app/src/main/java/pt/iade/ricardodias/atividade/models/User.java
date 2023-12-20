@@ -1,4 +1,4 @@
-package pt.iade.ricardodias.my_mobile_notes.models;
+package pt.iade.ricardodias.atividade.models;
 
 public class User {
     private int id;

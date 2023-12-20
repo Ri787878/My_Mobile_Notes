@@ -1,11 +1,9 @@
-package pt.iade.ricardodias.my_mobile_notes.models;
+package pt.iade.ricardodias.atividade.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Random;
 
 /*

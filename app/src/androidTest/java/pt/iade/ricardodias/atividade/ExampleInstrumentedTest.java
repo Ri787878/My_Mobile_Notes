@@ -1,4 +1,4 @@
-package pt.iade.ricardodias.my_mobile_notes;
+package pt.iade.ricardodias.atividade;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package pt.iade.ricardodias.my_mobile_notes.adapters;
+package pt.iade.ricardodias.atividade.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import pt.iade.ricardodias.atividade.models.NoteItem;
 import pt.iade.ricardodias.my_mobile_notes.R;
-import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 
 public class NoteItemRowAdapter extends RecyclerView.Adapter<NoteItemRowAdapter.ViewHolder> {
     private ArrayList<NoteItem> notes;
@@ -71,6 +70,5 @@ public class NoteItemRowAdapter extends RecyclerView.Adapter<NoteItemRowAdapter.
     public interface OnNoteItemClickListener{
         void onNoteItemClick(View view, int position);
 
-        void onItemClick(View view, int position);
     }
 }

@@ -1,10 +1,4 @@
-package pt.iade.ricardodias.my_mobile_notes.views;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package pt.iade.ricardodias.atividade.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +6,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
+import pt.iade.ricardodias.atividade.adapters.NoteItemRowAdapter;
+import pt.iade.ricardodias.atividade.models.NoteItem;
 import pt.iade.ricardodias.my_mobile_notes.R;
-import pt.iade.ricardodias.my_mobile_notes.adapters.NoteItemRowAdapter;
-import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 /*
 * Uma Activity principal chamada de MainActivity onde o utilizador terá uma lista (RecyclerView) de notas
 * com título e um breve sumário de apenas uma linha do corpo da nota (basta copiar o layout que todas as aplicações
@@ -99,13 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("item", notesList.get(position));
                 startActivity(intent);
 
-            }
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-
-                intent.putExtra("item", notesList.get(position));
-                startActivity(intent);
             }
 
         });

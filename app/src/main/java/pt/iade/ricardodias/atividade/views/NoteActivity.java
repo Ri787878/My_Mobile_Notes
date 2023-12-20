@@ -1,8 +1,5 @@
 
-package pt.iade.ricardodias.my_mobile_notes.views;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package pt.iade.ricardodias.atividade.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +8,14 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
+import pt.iade.ricardodias.atividade.models.NoteItem;
 import pt.iade.ricardodias.my_mobile_notes.R;
-import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
 
 /*
 * Uma Activity chamada NoteActivity onde o utilizador poderá visualizar, editar e criar uma nota. (5 pontos)
@@ -25,9 +24,9 @@ import pt.iade.ricardodias.my_mobile_notes.models.NoteItem;
  */
 
 public class NoteActivity extends AppCompatActivity {
-    protected EditText titleEdit;
-    protected EditText contentEdit;
-    protected TextView modifiedDateText;
+    protected EditText title;
+    protected EditText content;
+    protected TextView modifiedDate;
     protected NoteItem item;
     protected int listPosition;
 
@@ -80,22 +79,22 @@ public class NoteActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.note_activity_toolbar));
 
         //Get components into variables
-        titleEdit = (EditText) findViewById(R.id.note_activity_title);
-        contentEdit = (EditText) findViewById(R.id.note_activity_context);
-        modifiedDateText = (TextView) findViewById(R.id.note_activity_date);
+        title = (EditText) findViewById(R.id.note_activity_title);
+        content = (EditText) findViewById(R.id.note_activity_context);
+        modifiedDate = (TextView) findViewById(R.id.note_activity_date);
 
         //Populate the view with the data from the NoteItem
         populateView();
     }
     protected void populateView(){
-        titleEdit.setText(item.getTitle());
-        contentEdit.setText(item.getContent());
-        modifiedDateText.setText(item.getModifiedDate().toString());
+        title.setText(item.getTitle());
+        content.setText(item.getContent());
+        modifiedDate.setText(item.getModifiedDate().toString());
 
     }
     protected void commitView(){
-        item.setTitle(titleEdit.getText().toString());
-        item.setContent(contentEdit.getText().toString());
+        item.setTitle(title.getText().toString());
+        item.setContent(content.getText().toString());
         item.setModifiedDate(LocalDate.now(ZoneId.of("UTC")));
     }
 }
